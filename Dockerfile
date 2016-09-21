@@ -9,8 +9,10 @@ ENV PATH=${SBT_HOME}/bin:${PATH}
 
 USER root
 
-RUN curl -sL /tmp/sbt-${SBT_VERSION}.tgz "https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" | \
-    gunzip | tar -x -C /usr/local
+RUN apk add --update git && \
+    curl -sL /tmp/sbt-${SBT_VERSION}.tgz "https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" | \
+    gunzip | tar -x -C /usr/local && \
+    rm -rf /var/cache/apk/*
 
 USER jenkins
 RUN printf "set scalaVersion := \"${SCALA_VERSION}\"\nupdate-sbt-classifiers\nsbtVersion\n" | sbt && \
