@@ -2,7 +2,7 @@ FROM dwolla/jenkins-agent-core
 MAINTAINER Dwolla Dev <dev+jenkins-sbt@dwolla.com>
 LABEL org.label-schema.vcs-url="https://github.com/Dwolla/jenkins-agent-docker-sbt"
 
-ENV SBT_VERSION=0.13.13 \
+ENV SBT_VERSION=0.13.15 \
     SBT_HOME=/usr/local/sbt
 ENV PATH=${SBT_HOME}/bin:${PATH}
 
