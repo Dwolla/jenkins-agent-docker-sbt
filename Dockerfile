@@ -19,5 +19,8 @@ RUN apk add --no-cache git && \
 
 USER jenkins
 RUN cd $JENKINS_HOME/fake-project && \
+    echo sbt.version=0.13.16 > project/build.properties && \
+    sbt -Dsbt.log.noformat=true clean +compile && \
+    echo sbt.version=1.0.0 > project/build.properties && \
     sbt -Dsbt.log.noformat=true clean +compile && \
     rm -rf $JENKINS_HOME/fake-project
