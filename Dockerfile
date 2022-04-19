@@ -1,6 +1,8 @@
+ARG CORE_TAG
+
 FROM dwolla/sbt-version-cache AS sbt-cache
 FROM dwolla/sbt-plugins-cache AS sbt-plugins-cache
-FROM dwolla/jenkins-agent-core:alpine
+FROM dwolla/jenkins-agent-core:$CORE_TAG
 LABEL maintainer="Dwolla Dev <dev+jenkins-sbt@dwolla.com>"
 LABEL org.label-schema.vcs-url="https://github.com/Dwolla/jenkins-agent-docker-sbt"
 
