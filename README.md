@@ -4,3 +4,7 @@
 [![license](https://img.shields.io/github/license/dwolla/jenkins-agent-docker-sbt.svg?style=flat-square)](https://github.com/Dwolla/jenkins-agent-docker-sbt/blob/master/LICENSE)
 
 Docker image based on Dwolla’s [sbt-version-cache](https://github.com/Dwolla/docker-sbt-version-cache) and [core Jenkins Agent](https://github.com/Dwolla/jenkins-agent-docker-core) images, making [sbt](http://scala-sbt.org) available to Jenkins jobs.
+
+GitHub Actions will build the Docker images for multiple supported architectures.
+
+To build locally, run `make all` or `make core-${TAG}` for one of the supported tags.
