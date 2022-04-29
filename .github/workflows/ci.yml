@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         core_tag:
-          - sha-d3e1fed-8u322-b06-jdk
-          - sha-d3e1fed-11.0.14.1_1-jdk
+          - 8u322-b06-jdk-2cce095
+          - 11.0.14.1_1-jdk-2cce095
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -48,7 +48,7 @@ jobs:
             dwolla/jenkins-agent-sbt
           # Docker tags based on the following events/attributes
           tags: |
-            type=sha,suffix=-core-${{ matrix.core_tag }}
+            type=sha,prefix=${{ matrix.core_tag }}-
 
       # https://github.com/docker/build-push-action
       - name: Build and push
