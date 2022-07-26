@@ -1,4 +1,4 @@
-CORE_TAGS := 8u322-b06-jdk-2cce095 11.0.14.1_1-jdk-2cce095
+CORE_TAGS := 4.13.2-1-jdk8-7b03219 4.13.2-1-jdk11-7b03219
 JOBS := $(addprefix core-,${CORE_TAGS})
 CHECK_JOBS := $(addprefix check-,${CORE_TAGS})
 CLEAN_JOBS := $(addprefix clean-,${CORE_TAGS})
