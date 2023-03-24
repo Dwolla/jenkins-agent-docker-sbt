@@ -21,4 +21,8 @@ COPY --from=sbt-plugins-cache /root/.sbt ${JENKINS_HOME}/.sbt
 USER root
 RUN chown -R jenkins ${JENKINS_HOME}
 
+RUN export SDKMAN_DIR="${JENKINS_HOME}/.sdkman" && curl -s "https://get.sdkman.io" | bash
+
+RUN chown -R jenkins:jenkins "${JENKINS_HOME}/.sdkman"
+
 USER jenkins
