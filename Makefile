@@ -1,16 +1,17 @@
-CORE_TAGS := $(CORE_JDK8_TAG) $(CORE_JDK11_TAG)
-JOBS := $(addprefix core-,${CORE_TAGS})
-CLEAN_JOBS := $(addprefix clean-,${CORE_TAGS})
+CORE_TAG := $(CORE_JDK11_TAG)
+JOB := core-${CORE_TAG}
+CLEAN_JOB := clean-${CORE_TAG}
 
-all: ${JOBS}
-clean: ${CLEAN_JOBS}
-.PHONY: all clean ${JOBS} ${CLEAN_JOBS}
+all: ${JOB}
+clean: ${CLEAN_JOB}
+.PHONY: all clean ${JOB} ${CLEAN_JOB}
 
-${JOBS}: core-%: Dockerfile
-	docker build \
+${JOB}: core-%: Dockerfile
+	docker buildx build \
+	  --platform linux/arm64,linux/amd64 \
 	  --build-arg CORE_TAG=$* \
 	  --tag dwolla/jenkins-agent-sbt:$*-SNAPSHOT \
 	  .
 
-${CLEAN_JOBS}: clean-%:
+${CLEAN_JOB}: clean-%:
 	docker image rm --force dwolla/jenkins-agent-sbt:$*-SNAPSHOT

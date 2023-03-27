@@ -13,8 +13,6 @@ With [yq](https://kislyuk.github.io/yq/) installed, to build this image locally 
 
 ```bash
 make \
-    CORE_JDK8_TAG=$(curl --silent https://raw.githubusercontent.com/Dwolla/jenkins-agents-workflow/main/.github/workflows/build-docker-image.yml | \
-        yq .jobs.\"build-core-matrix\".strategy.matrix.TAG | yq '.[] | select (test(".*?jdk8.*?"))') \
     CORE_JDK11_TAG=$( curl --silent https://raw.githubusercontent.com/Dwolla/jenkins-agents-workflow/main/.github/workflows/build-docker-image.yml | \
         yq .jobs.\"build-core-matrix\".strategy.matrix.TAG | yq '.[] | select (test(".*?jdk11.*?"))') \
     all
