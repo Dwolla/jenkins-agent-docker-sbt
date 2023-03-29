@@ -10,7 +10,7 @@ jobs:
     uses: Dwolla/jenkins-agents-workflow/.github/workflows/build-docker-image.yml@main
     with:
       IMAGE_NAME: dwolla/jenkins-agent-sbt
-      TAG_NAME: CORE_TAG_JDK8_JDK11
+      TAG_NAME: CORE_TAG
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
