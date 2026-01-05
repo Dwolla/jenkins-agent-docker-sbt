@@ -7,13 +7,22 @@ on:
 
 jobs:
   build:
-    uses: Dwolla/jenkins-agents-workflow/.github/workflows/build-docker-image.yml@main
-    with:
-      IMAGE_NAME: dwolla/jenkins-agent-sbt
-      TAG_NAME: CORE_TAG
-    secrets:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    strategy:
+      matrix:
+        core_tag:
+          - 4.13.2-1-jdk11-a73d9b7
+          - 4.13.3-1-jdk17-be1c890
+          - 3355.v388858a_47b_33-5-jdk21-be1c890
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and Push Docker Image
+        uses: Dwolla/jenkins-agents-workflow/.github/actions/build@main
+        with:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          BASE_TAG: ${{ matrix.core_tag }}
+          TAG_NAME: CORE_TAG
+          IMAGE_NAME: dwolla/jenkins-agent-sbt
   build-complete:
     needs: build
     runs-on: ubuntu-latest
