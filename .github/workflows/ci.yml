@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         core_tag:
-          - 4.13.2-1-jdk11-a73d9b7
+          - 4.13.2-1-jdk11-be1c890
           - 4.13.3-1-jdk17-be1c890
           - 3355.v388858a_47b_33-5-jdk21-be1c890
     runs-on: ubuntu-latest
