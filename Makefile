@@ -4,9 +4,9 @@ CLEAN_JOB := clean-${CORE_TAG}
 
 # Default target builds Java 11, 17, and 21 variants
 # Note: Uses full core image tags with git hashes
-all: core-4.13.2-1-jdk11-a73d9b7 core-4.13.3-1-jdk17-be1c890 core-3355.v388858a_47b_33-5-jdk21-be1c890
+all: core-3261.v9c670a_4748a_9-8-jdk11-2bbea7f core-3261.v9c670a_4748a_9-8-jdk17-2bbea7f core-3261.v9c670a_4748a_9-8-jdk21-2bbea7f
 clean: ${CLEAN_JOB}
-.PHONY: all clean ${JOB} ${CLEAN_JOB} core-4.13.2-1-jdk11-a73d9b7 core-4.13.3-1-jdk17-be1c890 core-3355.v388858a_47b_33-5-jdk21-be1c890
+.PHONY: all clean ${JOB} ${CLEAN_JOB} core-3261.v9c670a_4748a_9-8-jdk11-2bbea7f core-3261.v9c670a_4748a_9-8-jdk17-2bbea7f core-3261.v9c670a_4748a_9-8-jdk21-2bbea7f
 
 ${JOB}: core-%: Dockerfile
 	docker buildx build \
@@ -15,25 +15,25 @@ ${JOB}: core-%: Dockerfile
 	  --tag dwolla/jenkins-agent-sbt:$*-SNAPSHOT \
 	  .
 
-core-4.13.2-1-jdk11-a73d9b7: Dockerfile
+core-3261.v9c670a_4748a_9-8-jdk11-2bbea7f: Dockerfile
 	docker buildx build \
 	  --platform linux/arm64,linux/amd64 \
-	  --build-arg CORE_TAG=4.13.2-1-jdk11-a73d9b7 \
-	  --tag dwolla/jenkins-agent-sbt:4.13.2-1-jdk11-a73d9b7-SNAPSHOT \
+	  --build-arg CORE_TAG=3261.v9c670a_4748a_9-8-jdk11-2bbea7f \
+	  --tag dwolla/jenkins-agent-sbt:3261.v9c670a_4748a_9-8-jdk11-2bbea7f-SNAPSHOT \
 	  .
 
-core-4.13.3-1-jdk17-be1c890: Dockerfile
+core-3261.v9c670a_4748a_9-8-jdk17-2bbea7f: Dockerfile
 	docker buildx build \
 	  --platform linux/arm64,linux/amd64 \
-	  --build-arg CORE_TAG=4.13.3-1-jdk17-be1c890 \
-	  --tag dwolla/jenkins-agent-sbt:4.13.3-1-jdk17-be1c890-SNAPSHOT \
+	  --build-arg CORE_TAG=3261.v9c670a_4748a_9-8-jdk17-2bbea7f \
+	  --tag dwolla/jenkins-agent-sbt:3261.v9c670a_4748a_9-8-jdk17-2bbea7f-SNAPSHOT \
 	  .
 
-core-3355.v388858a_47b_33-5-jdk21-be1c890: Dockerfile
+core-3261.v9c670a_4748a_9-8-jdk21-2bbea7f: Dockerfile
 	docker buildx build \
 	  --platform linux/arm64,linux/amd64 \
-	  --build-arg CORE_TAG=3355.v388858a_47b_33-5-jdk21-be1c890 \
-	  --tag dwolla/jenkins-agent-sbt:3355.v388858a_47b_33-5-jdk21-be1c890-SNAPSHOT \
+	  --build-arg CORE_TAG=3261.v9c670a_4748a_9-8-jdk21-2bbea7f \
+	  --tag dwolla/jenkins-agent-sbt:3261.v9c670a_4748a_9-8-jdk21-2bbea7f-SNAPSHOT \
 	  .
 
 ${CLEAN_JOB}: clean-%:

@@ -10,9 +10,9 @@ jobs:
     strategy:
       matrix:
         core_tag:
-          - 4.13.2-1-jdk11-be1c890
-          - 4.13.3-1-jdk17-be1c890
-          - 3355.v388858a_47b_33-5-jdk21-be1c890
+          - 3261.v9c670a_4748a_9-8-jdk11-2bbea7f
+          - 3261.v9c670a_4748a_9-8-jdk17-2bbea7f
+          - 3261.v9c670a_4748a_9-8-jdk21-2bbea7f
     runs-on: ubuntu-latest
     steps:
       - name: Build and Push Docker Image
