@@ -9,15 +9,20 @@ GitHub Actions will build the Docker images for multiple supported architectures
 
 ## Local Development
 
-With [yq](https://kislyuk.github.io/yq/) installed, to build this image locally run the following command:
+To build this image locally, run:
 
 ```bash
-make \
-    CORE_JDK11_TAG=$( curl --silent https://raw.githubusercontent.com/Dwolla/jenkins-agents-workflow/main/.github/workflows/build-docker-image.yml | \
-        yq .on.workflow_call.inputs.CORE_TAG.default) \
-    all
+make all
 ```
 
-Alternatively, without [yq](https://kislyuk.github.io/yq/) installed, refer to the CORE_TAG default values defined in [jenkins-agents-workflow](https://github.com/Dwolla/jenkins-agents-workflow/blob/main/.github/workflows/build-docker-image.yml) and run the following command:
+By default, `CORE_TAG` is resolved with [yq](https://github.com/mikefarah/yq) from the `CORE_TAG` default defined in [jenkins-agents-workflow](https://github.com/Dwolla/jenkins-agents-workflow/blob/main/.github/workflows/build-docker-image.yml), so [yq](https://github.com/mikefarah/yq) must be installed for the default to work:
 
-`make CORE_JDK11_TAG=<default-core-jdk11-tag-from-jenkins-agents-workflow> all`
+```bash
+brew install yq
+```
+
+To build against a specific core image instead, pass `CORE_TAG` explicitly (this does not require [yq](https://github.com/mikefarah/yq)):
+
+```bash
+make CORE_TAG=<core-tag> all
+```
