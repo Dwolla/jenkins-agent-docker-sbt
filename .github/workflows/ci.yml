@@ -10,9 +10,10 @@ jobs:
     strategy:
       matrix:
         core_tag:
-          - 3261.v9c670a_4748a_9-8-jdk11-8307125
-          - 3261.v9c670a_4748a_9-8-jdk17-8307125
-          - 3261.v9c670a_4748a_9-8-jdk21-8307125
+          - 3261.v9c670a_4748a_9-8-jdk11-a3a61f7
+          - 3384.v60d89463d9e0-1-jdk17-a3a61f7
+          - 3384.v60d89463d9e0-1-jdk21-a3a61f7
+          - 3384.v60d89463d9e0-1-jdk25-a3a61f7
     runs-on: ubuntu-latest
     steps:
       - name: Build and Push Docker Image
