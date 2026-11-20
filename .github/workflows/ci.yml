@@ -5,15 +5,22 @@ on:
   push:
     tags: [v*]
 
+env:
+  # One core image for every variant: the agent runs on its Java 21 (PLT-2156)
+  CORE_TAG: 3395.v6e5377b_0fb_3c-5-jdk21-df5d94a
+
 jobs:
   build:
     strategy:
       matrix:
-        core_tag:
-          - 3261.v9c670a_4748a_9-8-jdk11-a3a61f7
-          - 3384.v60d89463d9e0-1-jdk17-a3a61f7
-          - 3384.v60d89463d9e0-1-jdk21-a3a61f7
-          - 3384.v60d89463d9e0-1-jdk25-a3a61f7
+        include:
+          # The build JDK each label promises, pinned by digest
+          - build_jdk: 11
+            build_jdk_image: eclipse-temurin:11-jdk@sha256:9d369f804a33762f34b24cd9d1b9722fd810c16001da58bd63d0919f19a712c3
+          - build_jdk: 17
+            build_jdk_image: eclipse-temurin:17-jdk@sha256:7a0b2bc7e1372bb05ee361fb79e8a9e822df47343b8716253b3bbaa75060653e
+          - build_jdk: 21
+            build_jdk_image: eclipse-temurin:21-jdk@sha256:8ad118b146aa92da815b576441acd6b42b38236797ad0b6edc8c200b85bb0734
     runs-on: ubuntu-latest
     steps:
       - name: Build and Push Docker Image
@@ -21,8 +28,10 @@ jobs:
         with:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          BASE_TAG: ${{ matrix.core_tag }}
+          BASE_TAG: ${{ env.CORE_TAG }}
           TAG_NAME: CORE_TAG
+          EXTRA_BUILD_ARGS: BUILD_JDK_IMAGE=${{ matrix.build_jdk_image }}
+          TAG_PREFIX: ${{ env.CORE_TAG }}-build-jdk${{ matrix.build_jdk }}
           IMAGE_NAME: dwolla/jenkins-agent-sbt
   build-complete:
     needs: build
