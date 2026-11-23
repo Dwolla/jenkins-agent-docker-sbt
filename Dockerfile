@@ -1,3 +1,5 @@
+# check=skip=InvalidDefaultArgInFrom
+# The base image ARGs have no defaults on purpose: CI and the Makefile always pass them, from ci.yml.
 ARG CORE_TAG
 # The build JDK this image's label promises (java11-sbt, java17-sbt, java21-sbt). The agent itself
 # runs on the core image's Java 21 through JENKINS_JAVA_BIN; builds use this JDK as JAVA_HOME.
