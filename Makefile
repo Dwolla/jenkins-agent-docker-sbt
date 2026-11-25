@@ -1,5 +1,5 @@
 CORE_TAG ?= $(shell curl --silent https://raw.githubusercontent.com/Dwolla/jenkins-agents-workflow/main/.github/workflows/build-docker-image.yml | yq .on.workflow_call.inputs.CORE_TAG.default)
-# The build JDK (11, 17 or 21); its pinned image is read from the CI matrix
+# The build JDK (11, 17, 21 or 25); its pinned image is read from the CI matrix
 BUILD_JDK ?= 11
 BUILD_JDK_IMAGE ?= $(shell yq '.jobs.build.strategy.matrix.include[] | select(.build_jdk == $(BUILD_JDK)) | .build_jdk_image' .github/workflows/ci.yml)
 TAG := ${CORE_TAG}-build-jdk${BUILD_JDK}-SNAPSHOT
