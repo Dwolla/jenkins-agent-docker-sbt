@@ -7,7 +7,7 @@ on:
 
 env:
   # One core image for every variant: the agent runs on its Java 21 (PLT-2156)
-  CORE_TAG: 3395.v6e5377b_0fb_3c-5-jdk21-df5d94a
+  CORE_TAG: 3396.ve02b_5cde31b_2-4-jdk21-901b0a2
 
 jobs:
   build:
